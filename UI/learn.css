@@ -1,0 +1,71 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2
+}
+
+header {
+    background: #408800; /* Fidelity green */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 5;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.learn-more {
+    margin-bottom: 30px;
+}
+
+.topic {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #007d34; /* Fidelity green border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.topic h3 a {
+    color: inherit; /* Inherit text color from parent */
+    text-decoration: none; /* Remove underline */
+}
+
+footer {
+    background: #007d34; /* Fidelity green */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
