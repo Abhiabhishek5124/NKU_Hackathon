@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "express": "^4.19.2"
+    "docxtemplater": "^3.47.0",
+    "express": "^4.19.2",
+    "mammoth": "^1.7.1"
   }
 }

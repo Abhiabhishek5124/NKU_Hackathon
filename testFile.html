@@ -19,9 +19,7 @@
             try {
                 const response = await axios.post("/askquestion");
                 const questionByOllama = response.data.question;
-                const answerByOllama = response.data.answer;
                 document.getElementById('question').innerText += questionByOllama;
-                document.getElementById('answer').innerText += answerByOllama;
             } 
             catch (error) {
                 console.error('Error:', error.message);
