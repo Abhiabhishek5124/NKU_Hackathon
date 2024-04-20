@@ -17,38 +17,50 @@ const port = 4400;
 app.use(express.static('/Users/abhishek/Desktop/NKU_HACKATHON'));
 app.use(bodyParser.json());
 
-const docxFilePath = './assets/Budget.docx';
-let fileContent = '';
-let modelContent = '';
+let modelContent = [];
+const filepaths = [
+  './assets/Income.docx',
+  './assets/Budget.docx',
+  './assets/Savings.docx',
+  './assets/DEBT.docx'
+];
 
-// Read the content of the .docx file
-fs.readFile(docxFilePath, (err, data) => {
-  if (err) {
-    console.error('Error reading the file:', err);
-    return;
-  }
-  
-  // Extract text from the .docx file
-  mammoth.extractRawText({ buffer: data })
-    .then(async result => {
-      fileContent = result.value;
+// Read content of each .docx file
+Promise.all(filepaths.map(readFileAsync))
+  .then(contents => {
+    modelContent = contents.map(content => `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer, description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
+      ------------
+      ${content}
+      ------------`);
 
-      // Construct the content for generating questions
-      modelContent = `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer, description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
-        ------------
-        ${fileContent}
-        ------------  `;
+    // Define the messages to send for each completion
+    const messages = modelContent.map(content => ({ role: 'user', content }));
 
-      try {
-        // Generate questions using the GPT-3.5 model
-        const responseGPT = await openai.chat.completions.create({
-          model: 'gpt-3.5-turbo',
-          messages: [{ role: 'user', content: modelContent }],
-          temperature: 0,
-          max_tokens: 1500,
+    // Perform multiple completions in parallel
+    Promise.all(messages.map(message => openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [message],
+      temperature: 0,
+      max_tokens: 1500,
+    })))
+      .then(completions => {
+        completions.forEach((responseGPT, index) => {
+          console.log(`Completion ${index + 1}:`, responseGPT.choices[0].message.content);
+          // Send the generated questions as JSON response
+          app.get(`/generateQuestions/${index}`, (req, res) => {
+            res.status(200).json(responseGPT);
+          });
         });
+      })
+      .catch(err => {
+        console.error('Error generating questions:', err);
+      });
+  })
+  .catch(err => {
+    console.error('Error reading files:', err);
+  });
 
-        console.log(responseGPT.choices[0].message.content);
+        // console.log(responseGPT.choices[0].message.content);
 
         // Send the generated questions as JSON response
         app.get('/generateQuestions', (req, res) => {
@@ -68,16 +80,24 @@ fs.readFile(docxFilePath, (err, data) => {
           res.send(responseObject);
         });
 
-      } catch (err) {
-        console.error('Error generating questions:', err);
-      }
-    })
-    .catch(error => {
-      console.error('Error extracting text from .docx:', error);
-    });
-});
+      
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// Helper function to read a file asynchronously
+function readFileAsync(filepath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filepath, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        mammoth.extractRawText({ buffer: data })
+          .then(result => resolve(result.value))
+          .catch(reject);
+      }
+    });
+  });
+}
