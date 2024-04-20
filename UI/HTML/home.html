@@ -6,7 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FinanceBuddy</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../CSS/home.css">
+
+   <link rel="stylesheet" href="../CSS/home.css">
+   <link rel="stylesheet" href="../CSS/slider.css">
+
+
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" />
 </head>
 <body>
@@ -33,7 +37,7 @@
 </header>
 
 <!-- Main Section -->
-<main class="main">
+<div class="main">
    <section class="section banner banner-section">
       <div class="container banner-column">
          <div class="banner-links">
@@ -42,22 +46,71 @@
             <a href="#" title=""><i class="fa fa-instagram"></i></a>
             <a href="#" title=""><i class="fa fa-youtube-play"></i></a>
          </div>
+         <!-- Welcome Message -->
+         <h1>Welcome to our BudgetBuddy!</h1>
+         <!-- Sub Header -->
+         <h2>Play, learn and stay financially strong</h2>
+         <!-- Buttons -->
          <div>
-            <h1>WELCOME TO BudgetBuddy!</h1>
-            <h3>Play & learn!</h3>
+            <button class="main-button">Play</button>
+            <button class="main-button">Learn</button>
          </div>
-         <!-- New div for options -->
-         <div class="options">
-            <a href="../HTML/play.html" class="play-button">Play</a>
-            <a href="../HTML/Learn.html" class="learn-button">Learn</a>
-         </div>
-         
-        
       </div>
    </section>
-</main>
+</div>
+
+
+
+<div class="container-1">
+
+   <div class="slide">
+ 
+     <div class="item" style="background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20240211/pngtree-a-floating-smartphone-surrounded-by-golden-coin-online-business-income-related-image_15625524.jpg);">
+       <div class="content">
+         <div class="name">Income</div>
+         <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+         <button>See More</button>
+       </div>
+     </div>
+     <div class="item" style="background-image: url(https://cleverism.com/wp-content/uploads/2020/04/3093-How-to-Budget-the-Right-Way-8-Ways-to-Save-Money.jpg);">
+       <div class="content">
+         <div class="name">Budget</div>
+         <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+         <button>See More</button>
+       </div>
+     </div>
+     <div class="item" style="background-image: url(https://dionnevanzylgrant.com/wp-content/uploads/2022/12/How-to-Live-Debt-Free-3-Tips-to-Master-the-Art-by-Dionne-Van-Zyl-scaled.jpeg);">
+       <div class="content">
+         <div class="name">Debt</div>
+         <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+         <button>See More</button>
+       </div>
+     </div>
+     <div class="item" style="background-image: url(https://images.pexels.com/photos/1602726/pexels-photo-1602726.jpeg);">
+       <div class="content">
+         <div class="name">Savings</div>
+         <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+         <button>See More</button>
+       </div>
+     </div>
+   
+ 
+   </div>
+ 
+   <div class="butt">
+     <button class="prev"> < </button>
+     <button class="next"> > </button>
+   </div>
+ 
+ </div>
+
+ 
+
+
+
 
   <script  src="../JS files/home.js"></script>
+  <script  src="../JS files/slide.js"></script>
 
 </body>
 </html>
