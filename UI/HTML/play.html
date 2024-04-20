@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../CSS/play.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" />
+  
 </head>
 <body>
-  <header>
+  
     <header class="header" id="header">
    <nav class="navbar container">
       <a href="#" class="brandlogo"><img src="../images/b.png" /></a>
@@ -20,14 +21,13 @@
       </div>
       <div class="menu" id="menu">
         <ul class="menu-inner">
-        <ul>
-          <li class="menu-item"><a href="#" class="menu-link">HOME</a></li>
+
+          <li class="menu-item"><a href="../HTML/home.html" class="menu-link">HOME</a></li>
           <li class="menu-item"><a href="../HTML/home.html" class="menu-link">PLAY QUIZ</a></li>
           <li class="menu-item"><a href="../HTML/Learn.html" class="menu-link">LEARN HERE</a></li>
           <li class="menu-item"><a href="" class="menu-link">SUPPORT</a></li>
       
         </ul>
-      </nav>
     </div>
     <a href="#" class="menu-block">Discover</a>
   </nav>
@@ -43,25 +43,26 @@
           <a href="#" title=""><i class="fa fa-youtube-play"></i></a>
        </div>
     </div>
+  </section>
     <section class="options">
       <div class="container">
         <h1>Are you ready to play Quiz?</h1>
         <h2>Choose Your Option</h2>
-        <ul>
-          <li><a href="../HTML/incomeQuiz.html">Income</a></li>
-          <li><a href="../HTML/budgetQuiz.html">Budget</a></li>
-          <li><a href="../HTML/debtQuiz.html">Debt</a></li>
-          <li><a href="../HTML/savingsQuiz.html">Savings</a></li>
-        </ul>
+        <div class="options-container">
+          <button class="option-button" onclick="location.href='../HTML/incomeQuiz.html';">Income</button>
+          <button class="option-button" onclick="location.href='../HTML/budgetQuiz.html';">Budget</button>
+          <button class="option-button" onclick="location.href='../HTML/debtQuiz.html';">Debt</button>
+          <button class="option-button" onclick="location.href='../HTML/savingsQuiz.html';">Savings</button>
+        </div>
       </div>
     </section>
+    
+
 
 </main>
 
 <script  src="../JS files/home.js"></script>
 
-  <footer>
-    
-  </footer>
+ 
 </body>
 </html>

@@ -410,3 +410,24 @@ video {
 		width: 150px;
 	}
 }
+/* Added CSS for options and topics */
+.options {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.topic {
+  flex-basis: calc(50% - 20px);
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #007d34;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .topic {
+      flex-basis: calc(100% - 20px);
+  }
+}
