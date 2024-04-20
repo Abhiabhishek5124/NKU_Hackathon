@@ -31,7 +31,7 @@ const jsonFileNames = filepaths.map(filepath => {
 // Read content of each .docx file
 Promise.all(filepaths.map(readFileAsync))
   .then(contents => {
-    modelContent = contents.map(content => `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer (a,b,c or d), description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
+    modelContent = contents.map(content => `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer (0,1,2 or 3), description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
       ------------
       ${content}
       ------------`);
