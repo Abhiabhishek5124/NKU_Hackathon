@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Quiz relatedt to debt.</h1>
+      <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="play.html">Play here</a></li>
+          <li><a href="learn.html">Learn here.</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section class="quiz">
+    <div class="container">
+      <h2>Question</h2><h2 id = "qsn-no"></h2>
+      <p id = "question"></p>
+      <form>
+        <input type="radio" id="1st" name="capital" value="option1">
+        <label for="1" id = "label1"></label><br>
+        <input type="radio" id="2nd" name="capital" value="option2">
+        <label for="2" id = "label2"></label><br>
+        <input type="radio" id="3rd" name="capital" value="option3">
+        <label for="3" id = "label3"></label><br>
+        <input type="radio" id="4th" name="capital" value="option4">
+        <label for="4" id = "label4"></label><br>
+        <br>
+        <button id = "back">Back</button>
+        <button id = "next"> Next</button>
+        <button type="submit" id ="submit">Submit Quiz</button>
+      </form>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+  let correctNumbers = 0;
+  let questionAnswer = [];
+  let nextBtnCount = 0;
+
+// Fetch the JSON data using Axios
+axios.get('data.json')
+  .then(response => {
+      // Manipulate the data and render it in the HTML
+      questionAnswer = response.data;
+      console.log("JSON file received.");
+      
+      // Call generateQuestion after data is fetched
+      generateQuestion(questionAnswer, nextBtnCount);
+  })
+  .catch(error => {
+      console.error('Error fetching JSON:', error);
+  });
+const nextButton = document.getElementById('next');
+const backButton = document.getElementById('back');
+const submitButton = document.getElementById('submit');
+nextButton.addEventListener('click', function(){
+  event.preventDefault();
+  console.log("Next clicked")
+  nextBtnCount++;
+  generateQuestion(questionAnswer, nextBtnCount);
+});
+backButton.addEventListener('click', function(){
+  event.preventDefault();
+  console.log("Back clicked")
+  nextBtnCount--;
+  generateQuestion(questionAnswer, nextBtnCount);
+});
+submitButton.addEventListener("click", function(){
+  event.preventDefault();
+  checkAnswer();
+  alert(`You scored ${correctNumbers}!`)
+});
+
+function generateQuestion(questionArray, num){
+  if(num===0){
+    backButton.style.backgroundColor = '#A3D39C'; 
+    backButton.style.color = '#000'; 
+    backButton.style.border = '1px solid #A3D39C'; 
+    backButton.disabled = true;
+  }
+  else{
+    backButton.style.color = '#fff';
+    backButton.style.backgroundColor ='#408800';
+    backButton.style.border = '1px solid #A3D39C';
+    backButton.disabled = false;
+  }
+  questionNumber = document.getElementById('qsn-no');
+  questionNumber.innerText = num+1;
+  const questionPlace = document.getElementById('question');
+  const option1 = document.getElementById('label1');
+  const option2 = document.getElementById('label2');
+  const option3 = document.getElementById('label3');
+  const option4 = document.getElementById('label4');
+  console.log(questionArray);
+  if (num < questionArray.length) {
+    questionPlace.innerText = questionArray[num].question; 
+    option1.textContent = questionArray[num].options[0];
+    option2.textContent = questionArray[num].options[1];
+    option3.textContent = questionArray[num].options[2];
+    option4.textContent = questionArray[num].options[3];
+}
+  else{
+    questionPlace.innerText = "End of Quiz";
+    questionNumber.innerText = "";
+    option1.textContent = "";
+    option2.textContent = "";
+    option3.textContent = "";
+    option4.textContent = "";
+}
+}
+
+function checkAnswer() {
+    var radios = document.getElementsByName('capital');
+
+    var correctOption = 'A house';
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            correctOption = radios[i].value;
+            correctNumbers++;
+            break;
+        }
+    }
+    
+}
+
+</script>
+</body>
+</html>
