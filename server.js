@@ -9,8 +9,8 @@ dotenv.config();
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const port = 3009;
-app.use(express.static('/Users/bhuwanbhandari/Desktop/NEWWORK'));
+const port = 3010;
+app.use(express.static('/Users/Abhishek/Desktop/NKU_HACKATHON'));
 app.use(bodyParser.json());
 let category = '';
 //read the file
