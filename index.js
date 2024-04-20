@@ -32,7 +32,7 @@ const jsonFileNames = filepaths.map(filepath => {
 // Read content of each .docx file
 Promise.all(filepaths.map(readFileAsync))
   .then(contents => {
-    modelContent = contents.map(content => `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer, description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
+    modelContent = contents.map(content => `Create ten questions from the below text related to financial literacy and create a json array with the question, four options, correct answer (a,b,c or d), description (description about that answer. What and Why?). Only one option should be correct among the 4 options. Just give the JSON array and nothing else
       ------------
       ${content}
       ------------`);
@@ -73,10 +73,11 @@ Promise.all(filepaths.map(readFileAsync))
           res.status(200).json(responseGPT);
         });
 
-        app.get('/data.json', (req, res) => {
-          res.send(jsonAnswer);
-          console.log("Json file sent")
-        });
+        app.get('/incomeQues', (req, res) => {
+          const index = parseInt(req.query.index);
+          const question = questions[index];
+          res.json(question);
+      });
 
         app.post('/askquestion', (req, res) => {
           const responseObject = {
