@@ -1,0 +1,112 @@
+[
+    {
+        "question": "What is income?",
+        "options": {
+            "0": "The money you spend on products",
+            "1": "The money you receive in exchange for your labor or products",
+            "2": "The money you save in a bank account",
+            "3": "The money you borrow from others"
+        },
+        "correct_answer": "1",
+        "description": "Income is the money you receive in exchange for your labor or products. This is the primary source of earnings for most individuals."
+    },
+    {
+        "question": "What are some forms of income for individuals?",
+        "options": {
+            "0": "Revenue from selling services",
+            "1": "Wages and salaries",
+            "2": "Interest and dividends received",
+            "3": "All of the above"
+        },
+        "correct_answer": "3",
+        "description": "For individuals, income can come in the form of wages and salaries, revenue from selling services, and interest and dividends received from investments."
+    },
+    {
+        "question": "How do businesses generate income?",
+        "options": {
+            "0": "By borrowing money from banks",
+            "1": "By selling services and products",
+            "2": "By giving away products for free",
+            "3": "By saving money in a bank account"
+        },
+        "correct_answer": "1",
+        "description": "Businesses generate income by selling services and products to customers. This revenue is a key component of their financial success."
+    },
+    {
+        "question": "What is not considered as income for individuals?",
+        "options": {
+            "0": "Wages and salaries",
+            "1": "Pension distributions",
+            "2": "Savings in a bank account",
+            "3": "Return on investments"
+        },
+        "correct_answer": "2",
+        "description": "While savings in a bank account can help individuals grow their wealth, it is not considered income. Income is typically money received in exchange for labor or investments."
+    },
+    {
+        "question": "Why is income important for individuals?",
+        "options": {
+            "0": "To track expenses",
+            "1": "To plan for retirement",
+            "2": "To pay bills and meet financial goals",
+            "3": "All of the above"
+        },
+        "correct_answer": "3",
+        "description": "Income is important for individuals as it helps them track expenses, plan for retirement, pay bills, and meet financial goals. It is a key factor in achieving financial stability."
+    },
+    {
+        "question": "What is the primary source of income for most people?",
+        "options": {
+            "0": "Savings in a bank account",
+            "1": "Return on investments",
+            "2": "Wages and salaries",
+            "3": "Pension distributions"
+        },
+        "correct_answer": "2",
+        "description": "For most people, wages and salaries are the primary source of income. This is the money they earn in exchange for their labor."
+    },
+    {
+        "question": "How do economists define income?",
+        "options": {
+            "0": "Based on savings",
+            "1": "Based on production",
+            "2": "Based on public finance",
+            "3": "All of the above"
+        },
+        "correct_answer": "3",
+        "description": "Economists have different definitions of income, which can be based on earnings, savings, consumption, production, public finance, capital investment, or other topics. It varies depending on the context and focus of the analysis."
+    },
+    {
+        "question": "What is income for businesses?",
+        "options": {
+            "0": "Money saved in a bank account",
+            "1": "Revenue from selling services and products",
+            "2": "Interest received from investments",
+            "3": "Money borrowed from lenders"
+        },
+        "correct_answer": "1",
+        "description": "For businesses, income is the revenue generated from selling services and products to customers. This is a key indicator of the financial health of a business."
+    },
+    {
+        "question": "Why is income important for businesses?",
+        "options": {
+            "0": "To pay taxes",
+            "1": "To invest in new projects",
+            "2": "To generate profits",
+            "3": "All of the above"
+        },
+        "correct_answer": "3",
+        "description": "Income is important for businesses as it helps them pay taxes, invest in new projects, generate profits, and grow their operations. It is a crucial aspect of financial management for businesses."
+    },
+    {
+        "question": "What is the difference between income and revenue for businesses?",
+        "options": {
+            "0": "There is no difference",
+            "1": "Income is the money received from selling products, while revenue is the total earnings",
+            "2": "Income is the total earnings, while revenue is the money received from selling products",
+            "3": "Income is for individuals, while revenue is for businesses"
+        },
+        "correct_answer": "1",
+        "description": "Income is the money received in exchange for labor or products for individuals, while revenue is the total earnings from selling services and products for businesses. The distinction lies in the source and nature of the earnings."
+    }
+]
