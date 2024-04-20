@@ -111,8 +111,10 @@ app.get('/saving', (req, res) => {
   console.log("Json file sent")
 });
 
-app.get('/income/:nextBtnCount', (req, res) => {
-  const questions = JSON.parse(fs.readFileSync('./Income.json'));
+app.get('/:category/:nextBtnCount', (req, res) => {
+  const category = req.params.category.toLowerCase();
+  const questions = JSON.parse(fs.readFileSync(`./${category}.json`));
+  
   const index = req.params.nextBtnCount;
   console.log(index);
   const sendingData = {question: questions[index].question, options:questions[index].options};
@@ -120,10 +122,12 @@ app.get('/income/:nextBtnCount', (req, res) => {
   res.send(sendingData);
   console.log("Json file sent")
 });
-app.get('/incomeAnswer/:nextBtnCount', (req, res) => {
+app.get('/:checkCategory/:nextBtnCount', (req, res) => {
+  const category = req.params.category.toLowerCase;
+  console.log(category);
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync('./Income.json'));
+  const questions = JSON.parse(fs.readFileSync(`./${category}.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")
