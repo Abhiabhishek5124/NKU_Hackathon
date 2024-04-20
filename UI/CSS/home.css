@@ -286,7 +286,7 @@ video {
  
 
   /* Styles for buttons with green theme */
-.main-button {
+.main-button a {
   width: 120px; /* Set the width of the button */
    height: 60px;
   background-color: green;
@@ -301,17 +301,65 @@ video {
 }
 
 /* Hover effect for buttons with green theme */
-.main-button:hover {
+.main-button a:hover {
   background-color: red;
   color: black;
   align-items: center;
 }
 
+.footer {
+  background-color: green;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer h3 {
+  font-size: 1.2em;
+}
+
+.footer p {
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
+  }
+
+  .footer-left,
+  .footer-right {
+      text-align: center;
+  }
+}
+
+.footer .copyright {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
 
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
- .main-button {
+ .main-button a {
    padding: 8px 16px;
  }
 }
