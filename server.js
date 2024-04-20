@@ -12,7 +12,7 @@ const openai = new OpenAI({
 const port = 3009;
 app.use(express.static('/Users/bhuwanbhandari/Desktop/NEWWORK'));
 app.use(bodyParser.json());
-
+let category = '';
 //read the file
 //console.log(fileContents);
 //generate the question
@@ -111,23 +111,72 @@ app.get('/saving', (req, res) => {
   console.log("Json file sent")
 });
 
-app.get('/:category/:nextBtnCount', (req, res) => {
-  const category = req.params.category.toLowerCase();
-  const questions = JSON.parse(fs.readFileSync(`./${category}.json`));
+app.get('/income/:nextBtnCount', (req, res) => {
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const index = req.params.nextBtnCount;
+  const sendingData = {question: questions[index].question, options:questions[index].options};
+  res.send(sendingData);
+  console.log("Json file sent")
+});
+app.get('/budget/:nextBtnCount', (req, res) => {
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const index = req.params.nextBtnCount;
+  const sendingData = {question: questions[index].question, options:questions[index].options};
+  console.log(sendingData);
+  res.send(sendingData);
   
+});
+app.get('/debt/:nextBtnCount', (req, res) => {
+  
+  console.log(category);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
   const index = req.params.nextBtnCount;
   console.log(index);
+  console.log(category);
   const sendingData = {question: questions[index].question, options:questions[index].options};
   console.log(sendingData);
   res.send(sendingData);
   console.log("Json file sent")
 });
-app.get('/:checkCategory/:nextBtnCount', (req, res) => {
-  const category = req.params.category.toLowerCase;
+app.get('/saving/:nextBtnCount', (req, res) => {
   console.log(category);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync(`./${category}.json`));
+  console.log(category);
+  const sendingData = {question: questions[index].question, options:questions[index].options};
+  console.log(sendingData);
+  res.send(sendingData);
+  console.log("Json file sent")
+});
+app.get('/incomeAnswer/:nextBtnCount', (req, res) => {
+  const index = req.params.nextBtnCount;
+  console.log(index);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
+  res.send(answerDescription);
+  console.log("Json file sent")
+});
+app.get('/debtAnswer/:nextBtnCount', (req, res) => {
+  const index = req.params.nextBtnCount;
+  console.log(index);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
+  res.send(answerDescription);
+  console.log("Json file sent")
+});
+app.get('/budgetAnswer/:nextBtnCount', (req, res) => {
+  const index = req.params.nextBtnCount;
+  console.log(index);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
+  res.send(answerDescription);
+  console.log("Json file sent")
+});
+app.get('/debtAnswer/:nextBtnCount', (req, res) => {
+  const index = req.params.nextBtnCount;
+  console.log(index);
+  const questions = JSON.parse(fs.readFileSync(`./income.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")

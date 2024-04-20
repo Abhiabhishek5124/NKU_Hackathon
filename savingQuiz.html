@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="container">
-      <h1>Quiz relatedt to saving.</h1>
+      <h1>Quiz related to income.</h1>
       <nav>
         <ul>
           <li><a href="home.html">Home</a></li>
@@ -38,6 +38,7 @@
           <button id = "next"> Next</button>
           <button type="submit" id ="submit">Submit Quiz</button>
         </div>
+        <div id = "check-answer"></div>
         <div id = "description"></div>
       </form>
     </div>
@@ -46,24 +47,25 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
   let correctNumbers = 0;
-  let questionAnswer = [];
   let nextBtnCount = 0;
-  let rightAnswer = '';
-  const data = null;
+  //let rightAnswer = '';
+  let answerDescription = '';
+  let category = 'saving';
 // Fetch the JSON data using Axios
-axios.get('saving', data)
+axios.get(`${category}/${nextBtnCount}`)
   .then(response => {
       // Manipulate the data and render it in the HTML
       questionAnswer = response.data;
       console.log("JSON file received.");
-      console.log
+      
       // Call generateQuestion after data is fetched
-      rightAnswer = generateQuestion(questionAnswer, nextBtnCount);
-      console.log(rightAnswer);
+      generateQuestion(questionAnswer, nextBtnCount);
+      //console.log(rightAnswer);
   })
   .catch(error => {
       console.error('Error fetching JSON:', error);
   });
+const answerDiv = document.getElementById('check-answer');
 const description = document.getElementById('description');
 const nextButton = document.getElementById('next');
 const submitButton = document.getElementById('submit');
@@ -71,11 +73,23 @@ const checkButton = document.getElementById('done');
 nextButton.addEventListener('click', function(){
   event.preventDefault();
   //console.log("Next clicked")
-  document.getElementById('my-form').reset();
   description.innerText = '';
+  answerDiv.innerText = '';
+  document.getElementById('my-form').reset();
   nextBtnCount++;
-  rightAnswer = generateQuestion(questionAnswer, nextBtnCount);
-  console.log(rightAnswer);
+  axios.get(`${category}/${nextBtnCount}`)
+  .then(response => {
+      // Manipulate the data and render it in the HTML
+      questionAnswer = response.data;
+      console.log("JSON file received.");
+      // Call generateQuestion after data is fetched
+      generateQuestion(questionAnswer, nextBtnCount);
+      //console.log(rightAnswer);
+  })
+  .catch(error => {
+      console.error('Error fetching JSON:', error);
+  });
+  
 });
 submitButton.addEventListener("click", function(){
   event.preventDefault();
@@ -85,19 +99,30 @@ submitButton.addEventListener("click", function(){
 });
 checkButton.addEventListener('click', function(){
   event.preventDefault();
-  console.log('done clicked!');
-  console.log(rightAnswer);
-  if(checkAnswer(rightAnswer)){
-    description.style.color = '#408800';
-    description.innerText = "Correct Answer";
+
+  axios.get(`savingAnswer/${nextBtnCount}`)
+  .then(response => {
+      // Manipulate the data and render it in the HTML
+      answerDescription = response.data;
+      console.log("Answer with description file received.");
+      console.log(answerDescription);
+      if(checkAnswer(answerDescription.answer))
+  {
+    answerDiv.style.color = '#408800';
+    answerDiv.innerText = "Correct Answer";
   }
-  else{
-    description.style.color = '#ff0000';
-    description.innerText = "Wrong Answer";
+  else
+  {
+    answerDiv.style.color = '#ff0000';
+    answerDiv.innerText = "Wrong Answer";
   }
-  
+  description.innerText = answerDescription.description;
+  })
+  .catch(error => {
+      console.error('Error fetching JSON:', error);
+  });
 });
-function generateQuestion(questionArray, num){
+function generateQuestion(questionJSON, num){
   console.log(num);
   questionNumber = document.getElementById('qsn-no');
   questionNumber.innerText = num+1;
@@ -111,32 +136,31 @@ function generateQuestion(questionArray, num){
   const value3 = document.getElementById('3rd');
   const value4 = document.getElementById('4th');
   //console.log(questionArray);
-  if (num < questionArray.length) {
-    questionPlace.innerText = questionArray[num].question; 
-    option1.textContent = questionArray[num].options[0];
-    option2.textContent = questionArray[num].options[1];
-    option3.textContent = questionArray[num].options[2];
-    option4.textContent = questionArray[num].options[3];
-    value1.value = questionArray[num].options[0];
-    value2.value = questionArray[num].options[1];
-    value3.value = questionArray[num].options[2];
-    value4.value = questionArray[num].options[3];
-    if (num == questionArray.length-1){
+    questionPlace.innerText = questionJSON.question; 
+    option1.textContent = questionJSON.options['0'];
+    option2.textContent = questionJSON.options['1'];
+    option3.textContent = questionJSON.options['2'];
+    option4.textContent = questionJSON.options['3'];
+    value1.value = questionJSON.options['0'];
+    value2.value = questionJSON.options['1'];
+    value3.value = questionJSON.options['2'];
+    value4.value = questionJSON.options['3'];
+    if (num == 9){
       console.log("question 10 reached");
       nextButton.style.display = 'none';
       submitButton.style.display = 'block';
+    }
 }
-    return questionArray[num].answer;
-}
-
-}
-function checkAnswer(correctAnswer) {
+function checkAnswer(correctAnswer) {//1
     var radios = document.getElementsByName('capital');
     for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked && correctAnswer == radios[i].value) {
+      console.log(radios[i].checked);
+        if (radios[i].checked ){
+          if (parseInt(correctAnswer) ==i){
             correctNumbers++;
             return true;
         }
+      }
     }  
 }
 

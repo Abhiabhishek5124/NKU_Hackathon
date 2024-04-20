@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="container">
-      <h1>Quiz relatedt to income.</h1>
+      <h1>Quiz related to income.</h1>
       <nav>
         <ul>
           <li><a href="home.html">Home</a></li>
@@ -48,10 +48,10 @@
   <script>
   let correctNumbers = 0;
   let nextBtnCount = 0;
-  //let rightAnswer = '';
   let answerDescription = '';
+  let category = 'income';
 // Fetch the JSON data using Axios
-axios.get(`income/${nextBtnCount}`)
+axios.get(`${category}/${nextBtnCount}`)
   .then(response => {
       // Manipulate the data and render it in the HTML
       questionAnswer = response.data;
@@ -64,8 +64,7 @@ axios.get(`income/${nextBtnCount}`)
   .catch(error => {
       console.error('Error fetching JSON:', error);
   });
-let category = 'income';
-let checkCategory = 'incomeAnswer'
+
 const answerDiv = document.getElementById('check-answer');
 const description = document.getElementById('description');
 const nextButton = document.getElementById('next');
@@ -100,8 +99,8 @@ submitButton.addEventListener("click", function(){
 });
 checkButton.addEventListener('click', function(){
   event.preventDefault();
-  
-  axios.get(`${checkCategory}/${nextBtnCount}`)
+
+  axios.get(`incomeAnswer/${nextBtnCount}`)
   .then(response => {
       // Manipulate the data and render it in the HTML
       answerDescription = response.data;
