@@ -62,13 +62,12 @@
 .item .content{
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 50;
-    text-align: center;
-    color: #eee;
+    left: 40%;
     transform: translate(-50%, -50%);
-    font-family: system-ui;
-    display: none;
+    text-align: left;
+    color: #fff;
+    display: none;;
+
 }
 
 
@@ -78,6 +77,9 @@
 
 
 .content .name{
+    background-color: green;
+    display: inline-block;
+    text-align: left;
     font-size: 40px;
     text-transform: uppercase;
     font-weight: bold;
@@ -92,7 +94,9 @@
     animation: animate 1s ease-in-out 0.3s 1 forwards;
 }
 
-.content button{
+.content button a{
+    color: white;
+    background-color: green;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -131,12 +135,12 @@
     border: none;
     cursor: pointer;
     margin: 0 5px;
-    border: 1px solid #000;
+    border: 1px solid white;
     transition: 0.3s;
 }
 
 .butt button:hover{
-    background: #ababab;
+    background: green;
     color: #fff;
 }
 
