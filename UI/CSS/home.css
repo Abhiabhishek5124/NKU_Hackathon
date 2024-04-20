@@ -27,7 +27,7 @@ body {
 	height: -webkit-fill-available;
 	color: hsl(206, 5%, 100%);
 	background-color: hsl(216, 22%, 4%);
-	background-image: url(bg.jpeg);
+	background-image: url(../images/bg.jpeg);
 	background-size: contain;
 	background-position: top center;
 }
