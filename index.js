@@ -24,6 +24,10 @@ const filepaths = [
   './assets/Savings.docx',
   './assets/DEBT.docx'
 ];
+const jsonFileNames = filepaths.map(filepath => {
+  const baseName = filepath.split('/').pop(); // Get the base filename
+  return baseName.replace('.docx', '.json'); // Replace .docx extension with .json
+});
 
 // Read content of each .docx file
 Promise.all(filepaths.map(readFileAsync))
@@ -47,6 +51,8 @@ Promise.all(filepaths.map(readFileAsync))
         completions.forEach((responseGPT, index) => {
           console.log(`Completion ${index + 1}:`, responseGPT.choices[0].message.content);
           // Send the generated questions as JSON response
+          const fileName = jsonFileNames[index]
+          fs.writeFileSync(fileName, JSON.parse(JSON.stringify(responseGPT.choices[0].message.content, null, 2)));
           app.get(`/generateQuestions/${index}`, (req, res) => {
             res.status(200).json(responseGPT);
           });
